@@ -6,4 +6,6 @@ def master(a:int) -> None:
     print("Lo que quieras")
     return None
 
-print(master(67))
+def ciudades():
+    print("Hola mundo")
+ciudades()
