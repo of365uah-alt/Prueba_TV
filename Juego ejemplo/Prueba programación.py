@@ -2,7 +2,7 @@
 
 print("Hola NEGRAS")
 def main():
-    casa=true
+    casa=True
     while casa==True:
         print("dejen de ir a puticlubs, por favor")
 
