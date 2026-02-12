@@ -6,4 +6,11 @@ def main():
     while casa==True:
         print("dejen de ir a tiendas de zapatos (referencia GTA V), por favor")
 
-main()
+def master(a:int) -> None:
+    print("Lo que quieras")
+    return None
+# Lo que sea
+
+def ciudades():
+    print("Hola mundo")
+ciudades()
