@@ -1,3 +1,5 @@
+# Hola, soy un comentario con derechos. Si me borras procedere a denunciarte y a reclamar una indemnizacion por daños y prejuicios.
+
 print("Hola mundo")
 
 import random
@@ -23,5 +25,9 @@ def metodo4(s: str) -> int:
     for i in range(10):
         tabla.append(random.randint(1,10))
         print(tabla)
+
+# sigma
+
+                        
 
 metodo("Hola")
