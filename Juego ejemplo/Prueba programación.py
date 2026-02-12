@@ -1,18 +1,2 @@
-
-as
-a
-a
-a
-
-a
-a
-a
-
-a
-
-a
-a
-
-a
-a
-aaa
+# Inicio del proyectilo de juego ejemplo
+print("Hola, bienvenido al juego ejemplo")
