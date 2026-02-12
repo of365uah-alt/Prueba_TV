@@ -5,4 +5,5 @@ print("Hola mundo")
 def terraseñal(a:int) -> None:
     print(a)
     return None
+
 print(terraseñal(67))
