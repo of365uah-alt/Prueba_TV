@@ -1,6 +1,6 @@
-#hola
+#Adios
 for i in range(1,10000): print("a")
-#perrosanche
+#Presidente del PSOE
 
-#wtf xd
-# Pneumonoultramicroscopicsilicovolcanoconiosis
+#Que?
+# Esternocleidomastoideologia
