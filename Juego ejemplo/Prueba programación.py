@@ -29,7 +29,7 @@ def metodo5(s: str) -> int:
     tabla = []
     for i in range(10):
         tabla.append(random.randint(1,10))
-        print(tabla)
+        print('polnito')
 
 # sigma
 
