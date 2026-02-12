@@ -2,5 +2,5 @@
 
 <<<<<<< HEAD
 print("Hola mundo")
-def mainMierda():
-    print("dejen de hacer branches kbrones")
+def main():
+    print("dejen de hacer branches, por favor")
