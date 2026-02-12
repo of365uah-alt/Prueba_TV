@@ -1,4 +1,4 @@
-import tkinter as tk
+import tkinter as tk #1
 from tkinter import messagebox
 import time
 import random
