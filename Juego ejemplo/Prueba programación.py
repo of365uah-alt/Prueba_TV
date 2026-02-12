@@ -25,6 +25,11 @@ def metodo4(s: str) -> int:
     for i in range(10):
         tabla.append(random.randint(1,10))
         print(tabla)
+def metodo5(s: str) -> int:
+    tabla = []
+    for i in range(10):
+        tabla.append(random.randint(1,10))
+        print(tabla)
 
 # sigma
 
