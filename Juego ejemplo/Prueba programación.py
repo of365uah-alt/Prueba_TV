@@ -2,8 +2,8 @@
 
 print("Hola mundo")
 
-def terraseñal(a:int) -> None:
-    print(a)
+def master(a:int) -> None:
+    print("Lo que quieras")
     return None
 
-print(terraseñal(67))
+print(master(67))
