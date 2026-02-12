@@ -1,3 +1,3 @@
 '''
-Bombardeen a ivan y a Giuseppe (Panchito cagón)
+Esto es solo un inocente y solitario comentario en bloque.
 '''

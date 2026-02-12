@@ -1,1 +1,1 @@
-Panda de maricas
+Esto es una prueba de GitHub.
