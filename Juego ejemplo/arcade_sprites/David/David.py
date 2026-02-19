@@ -8,6 +8,11 @@ from pyglet.event import EVENT_HANDLE_STATE
 class MiJuego(arcade.Window):
     def __init__(self):
         super().__init__(600, 600, "Mi Juego")
+        self.luna_movingDown = None
+        self.luna_movingRight = None
+        self.luna_movingLeft = None
+
+        self.velocidad = 2
         arcade.set_background_color(arcade.color.BLACK)
         self.lunax = 300
         self.lunay = 300
@@ -21,15 +26,16 @@ class MiJuego(arcade.Window):
         arcade.draw.circle.draw_circle_filled(x - 15, y + 20, 30, arcade.color.GRAY)
         arcade.draw.circle.draw_circle_filled(x - 30, y - 35, 10, arcade.color.GRAY)
 
-#    def dibujar_misil(self):
-#        if self.misil.Activo == True:
-#            self.misil.distancia.x = self.misil.x - self.misil.xx
     def on_update(self, delta_time: float) -> bool | None:
         if self.luna_movingUp:
-            self.lunay += 1
+            self.lunay += self.velocidad
+        if self.luna_movingDown:
+            self.lunay -= self.velocidad
+        if self.luna_movingLeft:
+            self.lunax -= self.velocidad
+        if self.luna_movingRight:
+            self.lunax += self.velocidad
 
-    def luna_stop(self):
-        return
 
     def on_key_press(self, symbol: int, modifiers: int) -> EVENT_HANDLE_STATE:
         if symbol == arcade.key.W:
@@ -44,11 +50,11 @@ class MiJuego(arcade.Window):
         if symbol == arcade.key.W:
             self.luna_movingUp = False
         if symbol == arcade.key.S:
-            self.luna_movingUp = False
-        if symbol == arcade.key.W:
-            self.luna_movingUp = False
-        if symbol == arcade.key.W:
-            self.luna_movingUp = False
+            self.luna_movingDown = False
+        if symbol == arcade.key.D:
+            self.luna_movingRight = False
+        if symbol == arcade.key.A:
+            self.luna_movingLeft = False
   #  def on_mouse_press(self, x: int, y: int, button: int, modifiers: int) -> EVENT_HANDLE_STATE:
    #     self.lunax = x
     #    self.lunay = y
