@@ -1,11 +1,7 @@
 import arcade
 
-arcade.open_window(800, 600, "Dibujo Pancho")
-
-# pone el fondo en blanco
-arcade.set_background_color((3, 194, 252))
 arcade.start_render() # empieza el renderizado
-arcade.draw_lbwh_rectangle_filled(0, 0, 1200, 250, (255, 221, 0)) # dibuja el suelo
+
 def draw_tank(x,y, scale):
     # dibuja el tanque
     ## cuerpo del tanque
@@ -25,9 +21,26 @@ def draw_tank(x,y, scale):
     # Cañon del tanque
     arcade.draw_line(x +150*scale, y+82*scale, x+250*scale, y+82*scale, (44, 71, 48), 10*scale)
 
-draw_tank(100, 250, 0.5) # dibuja el tanque en la posición (100, 250) con escala 1/2
 
+SCREEN_WIDTH = 800
+SCREEN_HEIGHT = 600
 
-arcade.finish_render() # termina el renderizado
-arcade.run() # corre el programa
+class MiJuego(arcade.Window):
+    def __init__(self):
+        super().__init__(SCREEN_WIDTH, SCREEN_HEIGHT, "Mi Juego")
+        arcade.set_background_color((3, 194, 252))
+        arcade.draw_lbwh_rectangle_filled(0, 0, 1200, 250, (255, 221, 0)) # dibuja el suelo
+    
+    def on_draw(self):
+        self.clear()
+        # Poner aquí el código del dibujo
+        draw_tank(100, 250, 0.5)
+        draw_tank(125, 250, 0.5)
+        draw_tank(150, 250, 0.5)
+        draw_tank(175, 250, 0.5)
+        draw_tank(200, 250, 0.5)
+        # Cambiar la posición y/o tamaño del dibujo para crear animación
+        
 
+if __name__ == "__main__":
+    juego = MiJuego()
