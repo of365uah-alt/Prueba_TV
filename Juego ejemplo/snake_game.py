@@ -50,13 +50,13 @@ class SnakeGame:
                 return False
             
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_UP and self.direction != Direction.DOWN:
+                if event.key == pygame.K_w and self.direction != Direction.DOWN:
                     self.next_direction = Direction.UP
-                elif event.key == pygame.K_DOWN and self.direction != Direction.UP:
+                elif event.key == pygame.K_s and self.direction != Direction.UP:
                     self.next_direction = Direction.DOWN
-                elif event.key == pygame.K_LEFT and self.direction != Direction.RIGHT:
+                elif event.key == pygame.K_a and self.direction != Direction.RIGHT:
                     self.next_direction = Direction.LEFT
-                elif event.key == pygame.K_RIGHT and self.direction != Direction.LEFT:
+                elif event.key == pygame.K_d and self.direction != Direction.LEFT:
                     self.next_direction = Direction.RIGHT
                 elif event.key == pygame.K_SPACE and self.game_over:
                     self.reset_game()
