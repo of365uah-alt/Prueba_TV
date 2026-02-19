@@ -1,2 +1,1 @@
 El arzobispodeconstantinopla esta arzobispodeconstantinopolizado. ¿quien lo arzobispodeconstantinopolizara?
-El desarzobispodeconstantinopolizador que lo desarzobispodeconstantinopolice, buen desarzobispodeconstantinopolizador sera.
