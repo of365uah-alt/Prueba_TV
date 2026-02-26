@@ -1,0 +1,151 @@
+import json
+import random
+import pathlib
+
+pathStages = pathlib.Path("Text.json")
+pathActions = pathlib.Path("AccionesJugador.json")
+pathText = pathlib.Path("Text.json")
+
+Stages = json.load(open(pathStages,"r"))
+Actions = json.load(open(pathText,"r"))
+Text = json.load(open(pathText,"r"))
+
+def inicio():
+    print("hi welcome to freddy fazbear pizza")
+    print("all rigths reserved by fazbear entretaiment")
+    print("You will have to stay until morning")
+    print("May god be upon you")
+
+
+def cicloAvanzar():
+    for i in range(0,2):
+        randomGenerator = random.randint(0,5)
+        advanceStage = random.randint(0,1)
+        if(randomGenerator == 0):
+            if(advanceStage == 1):
+                Stages["chica"] += 1
+                if(Stages["chica"]==5): break
+
+        elif(randomGenerator == 1):
+            if(advanceStage == 1):
+                Stages["bonnie"] += 1
+                if(Stages["bonnie"]==5): break
+
+        elif(randomGenerator == 2):
+            if(advanceStage == 1):
+                Stages["freddy"] += 1
+                if(Stages["freddy"]==5): break
+        elif(randomGenerator == 3):
+            if(advanceStage == 1):
+                Stages["foxy"] += 1
+                if(Stages["foxy"]==5): break
+        if(advanceStage == 1 ):
+            Stages["puppet"] += 1
+            if(Stages["puppet"]==5): break 
+            
+
+
+def help():
+    print("You can do the following actions:")
+    print("press b to wind the music box ")
+    print("press l to check the left vent")
+    print("press r to check the rigth vent")
+    print("press h to check the hall")
+    print("press m to put on the mask")
+
+
+
+        
+
+
+
+def acciones():
+    actionSelected = False
+    for i in range(0,3):
+        while(actionSelected == False):
+            print("put help to see the controls")
+            action = input("select your action")
+
+            if(action == "b"):
+                print("Music box winned")
+                actionSelected = True
+                if(Stages["puppet"]-2 > 0):
+                    Stages["puppet"] = Stages["puppet"] -2
+                else: Stages["puppet"] = 0
+
+            elif(action == "m"):
+                print("mask on")
+                maskOn = True
+                actionSelected = True
+
+            elif(action == "l"):
+
+                print("checking left vent")
+                print("put help to see the controls")
+                action = input("select your action")
+
+                if(action == "help"):
+                    print("press c for closing the vent")
+                    print("press f to shine your flashligth")
+                elif(action == "c"):
+                    actionSelected = True
+                    leftVentclosed = True
+                elif(action == "f"):
+                    actionSelected = True
+                    flashingLeftVent = True
+
+            elif(action == "r"):
+
+                print("checking rigth vent")
+                print("put help to see the controls")
+                action = input("select your action")
+
+                if(action == "help"):
+                    print("press c for closing the vent")
+                    print("press f to shine your flashligth")
+                elif(action == "c"):
+                    actionSelected = True
+                    rigthVentclosed = True
+                elif(action == "f"):
+                    actionSelected = True
+                    flashingrigthVent = True
+
+            elif(action == "h"):
+
+                print("checking the hall")
+                print("put help to see the controls")
+                action = input("select your action")
+
+                if(action == "help"):
+                    print("press f to shine your flashligth")
+
+                elif(action == "f"):
+                    actionSelected = True
+                    flashingHall = True
+            
+            elif(action == "help"):
+                help()
+
+    return([maskOn, leftVentclosed, rigthVentclosed, flashingrigthVent, flashingLeftVent, flashingHall])
+
+
+def consecuences():
+    if(Stages["puppet"] > 5):
+        print(Text["puppet"]["death"])
+
+    elif(Stages["foxy"] > 5):
+        print(Text["foxy"]["death"])
+    
+    elif(Stages["chica"] > 5):
+        print(Text["chica"]["death"])
+
+    elif(Stages["bonnie"] > 5):
+        print(Text["bonnie"]["death"])
+
+    elif(Stages["freddy"] > 5):
+        print(Text["freddy"]["death"])
+
+    if(maskOn == False):
+        
+
+    
