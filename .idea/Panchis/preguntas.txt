@@ -1,0 +1,25 @@
+¿Cuál es el país más grande del mundo por superficie?|Rusia|China|Estados Unidos|Canadá
+¿Qué río es el más largo del mundo?|Amazonas|Nilo|Yangtsé|Misisipi
+¿En qué continente se encuentra El Cairo?|África|Asia|Europa|Oceanía
+¿Cuál es la capital de Canadá?|Ottawa|Toronto|Vancouver|Montreal
+¿Qué desierto es el más grande del planeta?|Sahara|Gobi|Kalahari|Arabia
+¿En qué año comenzó la Segunda Guerra Mundial?|1939|1914|1936|1945
+¿Quién fue el primer presidente de Estados Unidos?|George Washington|Abraham Lincoln|Thomas Jefferson|John Adams
+¿En qué país se originó la civilización maya?|México|Perú|Brasil|Argentina
+¿Qué imperio construyó el Coliseo?|Imperio romano|Imperio griego|Imperio egipcio|Imperio otomano
+¿Quién fue Napoleón Bonaparte?|Emperador francés|Rey de España|Zar ruso|Presidente alemán
+¿Cuál es el elemento químico con símbolo O?|Oxígeno|Oro|Osmio|Oxalato
+¿Qué planeta es conocido como el “planeta rojo”?|Marte|Venus|Júpiter|Saturno
+¿Qué científico formuló la teoría de la relatividad?|Albert Einstein|Isaac Newton|Galileo Galilei|Nikola Tesla
+¿Cuál es el órgano más grande del cuerpo humano?|Piel|Corazón|Pulmón|Hígado
+¿Qué partícula subatómica tiene carga negativa?|Electrón|Protón|Neutrón|Núcleo
+¿Quién pintó La Gioconda?|Leonardo da Vinci|Miguel Ángel|Rafael|Velázquez
+¿Quién escribió Cien años de soledad?|Gabriel García Márquez|Mario Vargas Llosa|Julio Cortázar|Pablo Neruda
+¿A qué movimiento artístico perteneció Pablo Picasso?|Cubismo|Impresionismo|Surrealismo|Barroco
+¿En qué país nació William Shakespeare?|Inglaterra|Francia|Italia|Alemania
+¿Qué instrumento musical tiene 88 teclas?|Piano|Órgano|Acordeón|Clavicordio
+¿Quién dirigió la película Titanic?|James Cameron|Steven Spielberg|Christopher Nolan|Ridley Scott
+¿Qué actor interpretó a Iron Man en el universo cinematográfico de Marvel?|Robert Downey Jr.|Chris Evans|Chris Hemsworth|Mark Ruffalo
+¿Cuál es la saga literaria creada por J.K. Rowling?|Harry Potter|El Señor de los Anillos|Las Crónicas de Narnia|Percy Jackson
+¿Qué banda británica lanzó el álbum Abbey Road?|The Beatles|Queen|The Rolling Stones|Pink Floyd
+¿En qué año se estrenó la primera película de Star Wars?|1977|1969|1983|1999
