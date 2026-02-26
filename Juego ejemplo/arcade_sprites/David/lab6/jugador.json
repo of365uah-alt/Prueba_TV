@@ -1,0 +1,41 @@
+{
+    "vida": 20,
+    "nivel": 1,
+    "experiencia": 0,
+    "dinero": 899,
+    "habilidades": {
+        "ataque": {
+            "danno": 7,
+            "resistecia": 0,
+            "regen": 0
+        },
+        "resistencia": {
+            "danno": 0,
+            "resistencia": 5,
+            "regen": 0
+        },
+        "regeneracion": {
+            "precio": 20,
+            "danno": 0,
+            "resistencia": 2,
+            "regen": 5,
+            "tipo": "habilidad"
+        }
+    },
+    "objetos": {
+        "granada": {
+            "precio": 35,
+            "danno": 8,
+            "resistencia": 0,
+            "regen": 0,
+            "tipo": "objeto"
+        },
+        "pocion": {
+            "precio": 10,
+            "danno": 0,
+            "resistencia": 0,
+            "regen": 8,
+            "tipo": "objeto"
+        }
+    }
+}

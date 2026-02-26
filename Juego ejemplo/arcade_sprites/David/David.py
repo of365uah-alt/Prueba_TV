@@ -1,8 +1,21 @@
 import arcade
 from pyglet.event import EVENT_HANDLE_STATE
-
+import pathlib
 
 # Abrimos la ventana
+Nave = pathlib.Path('Assets/Nave.png')
+
+
+class Luna:
+    def __init__(self,x,y):
+        self.x =x
+        self.y = y
+
+    def draw(self):
+        arcade.draw.circle.draw_circle_filled(self.x, self.y, 70, arcade.color.WHITE_SMOKE)
+        arcade.draw.circle.draw_circle_filled(self.x + 20, self.y - 30, 15, arcade.color.GRAY)
+        arcade.draw.circle.draw_circle_filled(self.x - 15, self.y + 20, 30, arcade.color.GRAY)
+        arcade.draw.circle.draw_circle_filled(self.x - 30, self.y - 35, 10, arcade.color.GRAY)
 
 
 class MiJuego(arcade.Window):
@@ -12,29 +25,30 @@ class MiJuego(arcade.Window):
         self.luna_movingRight = None
         self.luna_movingLeft = None
 
-        self.velocidad = 2
+        self.luna = Luna(200,200)
+
+        self.luna_velocidad = 2
         arcade.set_background_color(arcade.color.BLACK)
-        self.lunax = 300
-        self.lunay = 300
         self.luna_movingUp =  False
 
+        #sprites
+        self.sprites = arcade.SpriteList()
 
-    #Luna
-    def dibujar_luna(self,x: int, y: int):
-        arcade.draw.circle.draw_circle_filled(x, y, 70, arcade.color.WHITE_SMOKE)
-        arcade.draw.circle.draw_circle_filled(x + 20, y - 30, 15, arcade.color.GRAY)
-        arcade.draw.circle.draw_circle_filled(x - 15, y + 20, 30, arcade.color.GRAY)
-        arcade.draw.circle.draw_circle_filled(x - 30, y - 35, 10, arcade.color.GRAY)
+        self.playerModel = arcade.Sprite(Nave)
+        self.playerModel.scale = 0.05
+        self.playerModel.position = self.center
+        self.sprites.append(self.playerModel)
+
 
     def on_update(self, delta_time: float) -> bool | None:
         if self.luna_movingUp:
-            self.lunay += self.velocidad
+            self.luna.y += self.luna_velocidad
         if self.luna_movingDown:
-            self.lunay -= self.velocidad
+            self.luna.y -= self.luna_velocidad
         if self.luna_movingLeft:
-            self.lunax -= self.velocidad
+            self.luna.x -= self.luna_velocidad
         if self.luna_movingRight:
-            self.lunax += self.velocidad
+            self.luna.x += self.luna_velocidad
 
 
     def on_key_press(self, symbol: int, modifiers: int) -> EVENT_HANDLE_STATE:
@@ -55,12 +69,10 @@ class MiJuego(arcade.Window):
             self.luna_movingRight = False
         if symbol == arcade.key.A:
             self.luna_movingLeft = False
-  #  def on_mouse_press(self, x: int, y: int, button: int, modifiers: int) -> EVENT_HANDLE_STATE:
-   #     self.lunax = x
-    #    self.lunay = y
 
     def on_draw(self) -> EVENT_HANDLE_STATE:
         self.clear()
-        self.dibujar_luna(self.lunax, self.lunay)
+        self.luna.draw()
+        self.sprites.draw()
 juego = MiJuego()
 arcade.run()

@@ -1,0 +1,19 @@
+[
+  {
+    "nombre":"orco",
+    "danno": 3,
+    "vida": 10,
+    "dinero": 4,
+    "experiencia": 5
+  },
+  {
+
+    "nombre":"orco2",
+    "danno": 5,
+    "vida": 15,
+    "dinero": 10,
+    "experiencia": 15
+
+  }
+
+]
