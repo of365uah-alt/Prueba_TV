@@ -130,4 +130,22 @@ def acciones():
 
 
 def consecuences():
-    if 
+    if(Stages["puppet"] > 5):
+        print(Text["puppet"]["death"])
+
+    elif(Stages["foxy"] > 5):
+        print(Text["foxy"]["death"])
+    
+    elif(Stages["chica"] > 5):
+        print(Text["chica"]["death"])
+
+    elif(Stages["bonnie"] > 5):
+        print(Text["bonnie"]["death"])
+
+    elif(Stages["freddy"] > 5):
+        print(Text["freddy"]["death"])
+
+    if(maskOn == False):
+        
+
+    
