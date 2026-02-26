@@ -260,7 +260,7 @@ class Ball:
         normal = dist.normalized()
 
         self.x += normal.x * penetration
-        self.y += normal.y * penetration + player.y_dir * Player.SPEED * delta_time
+        self.y += normal.y * penetration + player.y_dsir * Player.SPEED * delta_time
 
 
     def bounce(self, normal: Vector2):
