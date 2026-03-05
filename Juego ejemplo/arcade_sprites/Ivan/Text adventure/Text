@@ -1,0 +1,35 @@
+{
+    "bonnie":{
+        "far": "nothing seems to be near",
+        "hall": "bonnies figure is standing there",
+        "vent": "bonnie is staring back",
+        "office": "bonnie lurks near your desk",
+        "death": "bonnie launches at you..."
+    },
+    "chica":{
+        "far": "nothing seems to be near",
+        "hall": "chicas figure is standing there",
+        "vent": "chica is staring back",
+        "office": "chica lurks near your desk",
+        "death": "chica launches at you..."
+    },
+    "foxy":{
+        "far": "nothing seems to be near",
+        "hall": "foxys figure is standing there",
+        "office": "foxy lurks near your desk",
+        "death": "foxy launches at you..."
+    },
+    "freddy":{
+        "far": "nothing seems to be near",
+        "hall": "freddys figure is standing there",
+        "vent": "freddy is staring back",
+        "office": "freddy lurks near your desk",
+        "death": "freddy launches at you..."
+    },
+    "puppet":{
+        "far": "nothing seems to be near",
+        "hall": "puppets figure is coming ",
+        "death": "puppet launches at you...",
+        "noMusic": "its to late..."
+    }
+}

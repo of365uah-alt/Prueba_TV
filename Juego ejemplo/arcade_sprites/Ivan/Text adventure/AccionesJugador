@@ -1,0 +1,23 @@
+{
+    "ofice":{
+        "music box": "b",
+        "left vent": "l",
+        "rigth vent": "r",
+        "central hall": "h",
+        "mask": "m"
+    },
+    "leftVent":{
+        "flashligth": "f",
+        "close": "c"
+    },
+    
+    "rigthVent":{
+        "flashligth": "f",
+        "close": "c"
+    },
+
+    "Hall":{
+        "flashligth": "f"
+    }
+    
+}
