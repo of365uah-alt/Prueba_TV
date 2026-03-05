@@ -5,16 +5,21 @@ class enemigo:
         self.y = y
         self.vida = vida
         self.danno = danno
-    def recibirDanno(self,danno):
+    def recibir_danno(self,danno):
         self.vida -= danno
-        return
+        if self.vida <= 0:
+            return False
+        return True
+    def __len__(self):
+        return 4
 
 
 def main():
     orco = enemigo(100,100,20,4)
     orco.x += 20
-    orco.recibirDanno(7)
+    orco.recibir_danno(7)
     print(orco.vida)
+    print(len(orco))
 
     return
 main()
