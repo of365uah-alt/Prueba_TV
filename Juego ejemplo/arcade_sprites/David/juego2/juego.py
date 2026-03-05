@@ -1,3 +1,5 @@
+import math
+
 import arcade
 from pyglet.event import EVENT_HANDLE_STATE
 import pathlib
@@ -74,7 +76,6 @@ class MisilDA:
         self.predictX = self.target.x + (self.tvx * self.tiempoX)
         self.move(self.predictX,self.target.y)
 
-        print(self.tiempoX, self.tiempoY)
 
     def move(self,nx,ny):
         if self.vcooldown == 0:
@@ -86,8 +87,11 @@ class MisilDA:
                     self.vx -= 1
 
             if ny > self.y:
-                if self.vy < self._maxv:
-                    self.vy += 1
+                if (ny - self.y) >= 3*self.vy*(self.vy+1) //2:
+                    if self.vy < self._maxv:
+                        self.vy += 1
+                else:
+                    self.vy -= 1
             else:
                 if self.vy > -self._maxv:
                     self.vy -= 1
@@ -113,7 +117,7 @@ class Sams:
 
 class MiJuego(arcade.Window):
     def __init__(self):
-        super().__init__(800, 600, "Mi Juego")
+        super().__init__(800, 600, "Mi Juego",draw_rate=0.1 ,update_rate=0.1)
         arcade.set_background_color(arcade.color.CYAN)
 
         #sprites
