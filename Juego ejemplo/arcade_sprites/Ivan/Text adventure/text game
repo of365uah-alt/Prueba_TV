@@ -2,150 +2,160 @@ import json
 import random
 import pathlib
 
-pathStages = pathlib.Path("Text.json")
-pathActions = pathlib.Path("AccionesJugador.json")
-pathText = pathlib.Path("Text.json")
 
-Stages = json.load(open(pathStages,"r"))
-Actions = json.load(open(pathText,"r"))
-Text = json.load(open(pathText,"r"))
+class Game:
 
-def inicio():
-    print("hi welcome to freddy fazbear pizza")
-    print("all rigths reserved by fazbear entretaiment")
-    print("You will have to stay until morning")
-    print("May god be upon you")
+    def __init__(self):
+        # Cargar archivos
 
+        BASE_DIR = pathlib.Path(__file__).parent
+        path_stages = BASE_DIR / "Stages.json"
+        path_text = BASE_DIR / "Text.json"
 
-def cicloAvanzar():
-    for i in range(0,2):
-        randomGenerator = random.randint(0,5)
-        advanceStage = random.randint(0,1)
-        if(randomGenerator == 0):
-            if(advanceStage == 1):
-                Stages["chica"] += 1
-                if(Stages["chica"]==5): break
+        with open(path_stages, "r", encoding="utf-8") as f:
+            self.stages = json.load(f)
 
-        elif(randomGenerator == 1):
-            if(advanceStage == 1):
-                Stages["bonnie"] += 1
-                if(Stages["bonnie"]==5): break
+        with open(path_text, "r", encoding="utf-8") as f:
+            self.text = json.load(f)
 
-        elif(randomGenerator == 2):
-            if(advanceStage == 1):
-                Stages["freddy"] += 1
-                if(Stages["freddy"]==5): break
-        elif(randomGenerator == 3):
-            if(advanceStage == 1):
-                Stages["foxy"] += 1
-                if(Stages["foxy"]==5): break
-        if(advanceStage == 1 ):
-            Stages["puppet"] += 1
-            if(Stages["puppet"]==5): break 
-            
+        self.stages = json.load(open(path_stages, "r"))
+        self.text = json.load(open(path_text, "r"))
 
+        self.player = Player("Guard")
 
-def help():
-    print("You can do the following actions:")
-    print("press b to wind the music box ")
-    print("press l to check the left vent")
-    print("press r to check the rigth vent")
-    print("press h to check the hall")
-    print("press m to put on the mask")
+    def inicio(self):
+        print("Hi welcome to Freddy Fazbear Pizza")
+        print("All rights reserved by Fazbear Entertainment")
+        print("You will have to stay until morning")
+        print("May god be upon you")
 
+    def ciclo_avanzar(self):
 
+        for _ in range(2):
 
-        
+            random_generator = random.randint(0, 5)
+            advance_stage = random.randint(0, 1)
 
+            if advance_stage == 0:
+                continue
 
+            animatronics = ["chica", "bonnie", "freddy", "foxy"]
 
-def acciones():
-    actionSelected = False
-    for i in range(0,3):
-        while(actionSelected == False):
-            print("put help to see the controls")
-            action = input("select your action")
+            if random_generator < 4:
+                name = animatronics[random_generator]
+                self.stages[name] += 1
 
-            if(action == "b"):
-                print("Music box winned")
-                actionSelected = True
-                if(Stages["puppet"]-2 > 0):
-                    Stages["puppet"] = Stages["puppet"] -2
-                else: Stages["puppet"] = 0
+                if self.stages[name] >= 5:
+                    break
 
-            elif(action == "m"):
-                print("mask on")
-                maskOn = True
-                actionSelected = True
+            # puppet siempre avanza si advance_stage == 1
+            self.stages["puppet"] += 1
 
-            elif(action == "l"):
+            if self.stages["puppet"] >= 5:
+                break
 
-                print("checking left vent")
-                print("put help to see the controls")
-                action = input("select your action")
+    def consecuencias(self):
 
-                if(action == "help"):
-                    print("press c for closing the vent")
-                    print("press f to shine your flashligth")
-                elif(action == "c"):
-                    actionSelected = True
-                    leftVentclosed = True
-                elif(action == "f"):
-                    actionSelected = True
-                    flashingLeftVent = True
+        for name in ["puppet", "foxy", "chica", "bonnie", "freddy"]:
+            if self.stages[name] > 5:
+                print(self.text[name]["death"])
+                return True
 
-            elif(action == "r"):
+        return False
 
-                print("checking rigth vent")
-                print("put help to see the controls")
-                action = input("select your action")
+    def help(self):
+        print("You can do the following actions:")
+        print("b -> wind the music box")
+        print("l -> check the left vent")
+        print("r -> check the right vent")
+        print("h -> check the hall")
+        print("m -> put on the mask")
 
-                if(action == "help"):
-                    print("press c for closing the vent")
-                    print("press f to shine your flashligth")
-                elif(action == "c"):
-                    actionSelected = True
-                    rigthVentclosed = True
-                elif(action == "f"):
-                    actionSelected = True
-                    flashingrigthVent = True
+    def game_loop(self):
 
-            elif(action == "h"):
+        self.inicio()
 
-                print("checking the hall")
-                print("put help to see the controls")
-                action = input("select your action")
+        while True:
 
-                if(action == "help"):
-                    print("press f to shine your flashligth")
+            self.player.acciones(self)
 
-                elif(action == "f"):
-                    actionSelected = True
-                    flashingHall = True
-            
-            elif(action == "help"):
-                help()
+            self.ciclo_avanzar()
 
-    return([maskOn, leftVentclosed, rigthVentclosed, flashingrigthVent, flashingLeftVent, flashingHall])
+            if self.consecuencias():
+                break
 
 
-def consecuences():
-    if(Stages["puppet"] > 5):
-        print(Text["puppet"]["death"])
+class Player:
 
-    elif(Stages["foxy"] > 5):
-        print(Text["foxy"]["death"])
-    
-    elif(Stages["chica"] > 5):
-        print(Text["chica"]["death"])
+    def __init__(self, name):
 
-    elif(Stages["bonnie"] > 5):
-        print(Text["bonnie"]["death"])
+        self.name = name
 
-    elif(Stages["freddy"] > 5):
-        print(Text["freddy"]["death"])
+        self.mask_on = False
+        self.left_vent_closed = False
+        self.right_vent_closed = False
 
-    if(maskOn == False):
-        
+        self.flash_right_vent = False
+        self.flash_left_vent = False
+        self.flash_hall = False
 
-    
+    def acciones(self, game):
+
+        for _ in range(3):
+
+            action = input("Select your action (help for controls): ")
+
+            if action == "help":
+                game.help()
+
+            elif action == "b":
+
+                print("Music box wound")
+
+                game.stages["puppet"] = max(0, game.stages["puppet"] - 2)
+
+            elif action == "m":
+
+                print("Mask on")
+
+                self.mask_on = True
+
+            elif action == "l":
+
+                print("Checking left vent")
+
+                sub = input("c = close vent / f = flashlight: ")
+
+                if sub == "c":
+                    self.left_vent_closed = True
+
+                elif sub == "f":
+                    self.flash_left_vent = True
+
+            elif action == "r":
+
+                print("Checking right vent")
+
+                sub = input("c = close vent / f = flashlight: ")
+
+                if sub == "c":
+                    self.right_vent_closed = True
+
+                elif sub == "f":
+                    self.flash_right_vent = True
+
+            elif action == "h":
+
+                print("Checking hall")
+
+                sub = input("f = flashlight: ")
+
+                if sub == "f":
+                    self.flash_hall = True
+
+
+
+if __name__ == "__main__":
+
+    game = Game()
+    game.game_loop()
