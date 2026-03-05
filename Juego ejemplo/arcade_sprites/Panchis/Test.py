@@ -39,7 +39,7 @@ def juego(lista: list) -> None:
             print("La respuesta correcta es:", pregunta['respuesta'])
             if (input("¿Quieres seguir singando? (s/n):").lower() != 's'):
                 print("Puntos finales:" + str(puntos))
-            salir = True
+                salir = True
 
 
 juego(cargar_preguntas())

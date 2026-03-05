@@ -75,7 +75,7 @@ def show_answers(question: dict) -> int:
 
     while current_letter < (letters_max + 1) and current_answer_id < len(answers):
 
-        current_answer = answers[current_answer_id]
+        current_answer = str(answers[current_answer_id]).strip()
 
         print(f"{chr(current_letter)}) {current_answer}")
 
@@ -126,6 +126,6 @@ def start_round(question_pool: list, current: int) -> int:
     correct_letter = show_answers(question_pool[current])
     user_answer = input("> ")
 
-    return user_answer.lower() == correct_letter
+    return 5 if user_answer.lower() == chr(correct_letter) else 0
 
 start_game()
