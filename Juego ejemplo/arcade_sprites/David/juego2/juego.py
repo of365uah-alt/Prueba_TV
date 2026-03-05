@@ -71,7 +71,7 @@ class MisilDA:
         self.velocidadDiffY = (self.tvy - self.vy)
         self.tiempoX = abs(self.x - self.target.x)/abs(self.velocidadDiffX + 0.01)
         self.tiempoY = abs(self.y - self.target.y)/abs(self.velocidadDiffY + 0.01)
-        self.predictX = self.target.x + (self.tvx * (self.tiempoX + self.tiempoY))
+        self.predictX = self.target.x + (self.tvx * self.tiempoX)
         self.move(self.predictX,self.target.y)
 
         print(self.tiempoX, self.tiempoY)
