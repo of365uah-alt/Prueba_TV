@@ -37,9 +37,9 @@ def main():
         room("You are in a bedroom. There is a door to the east.", None, None, 1, None),
         room("You are in a hallway. There are doors to the west and east and a path to the north.", 4, None, 2, 0),
         room("You are in a dinning room. There are doors to the north and west.", 5, None, None, 1),
-        room("You are in garage. There is a door to the east",None,None,4,None),
-        room("You are in a hallway. There are doors to the west, east and north and a path to the south.", 6, 1, 3, 5),
-        room("You are in a kitchen. There are doors to the south and east.", None, 2, None, 4),
+        room("You are in garage. You can only go back (to east).",None,None,4,None),
+        room("You are in a hallway. There are doors to the west, east and north and a path to the south.", 6, 1, 5, 3),
+        room("You are in a kitchen. There are doors to the south and west.", None, 2, None, 4),
         room("You are in a balcony. There is a door to the south but you can jump if you want.", None, 4, None, None)
     ]
     current_room = 0
@@ -79,6 +79,18 @@ def main():
                 print("You can't go that way.")
 
         elif command == "q":
+            if current_room == 0:
+                print("You go to sleep.")
+            if current_room == 1:
+                print("You go to the bathroom and drown yourself in the bathtub.")
+            if current_room == 2:
+                print("You eat some bad food and die of food poisoning.")
+            if current_room == 3:
+                print("You hop on a bike and flee.")
+            if current_room == 4:
+                print("You take a shotgun and you make a reference to Kurt Cobain.")
+            if current_room == 5:
+                print("You take a knife and end your suffering.")
             if current_room == 6:
                 print("You jump off the balcony and die.")
             done = True
