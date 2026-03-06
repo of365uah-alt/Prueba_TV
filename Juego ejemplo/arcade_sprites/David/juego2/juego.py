@@ -68,26 +68,27 @@ class MisilDA:
 
         self.x = self.x + self.vx
         self.y = self.y + self.vy
+
         arcade.draw_point(self.x,self.y,self.color,self.size)
-        self.velocidadDiffX = (self.tvx - self.vx)
-        self.velocidadDiffY = (self.tvy - self.vy)
-        self.tiempoX = abs(self.x - self.target.x)/abs(self.velocidadDiffX + 0.01)
-        self.tiempoY = abs(self.y - self.target.y)/abs(self.velocidadDiffY + 0.01)
-        self.predictX = self.target.x + (self.tvx * self.tiempoX)
+        self.velocidadDiffX = abs(self.tvx - self.vx)
+        self.velocidadDiffY = abs(self.tvy - self.vy)
+        self.tiempoX = abs((self.x - self.predictX)/(self.velocidadDiffX + 0.5))
+        self.tiempoY = abs((self.y - self.target.y)/(self.velocidadDiffY + 0.5))
+        self.predictX = self.target.x + (self.velocidadDiffY * self.tiempoY)
         self.move(self.predictX,self.target.y)
 
 
     def move(self,nx,ny):
         if self.vcooldown == 0:
+            print(self.target.x,self.velocidadDiffX *self.tiempoX,self.velocidadDiffY * self.tiempoY)
             if nx > self.x:
                 if self.vx < self._maxv:
                     self.vx += 1
             else:
                 if self.vx > -self._maxv:
                     self.vx -= 1
-
             if ny > self.y:
-                if (ny - self.y) >= 3*self.vy*(self.vy+1) //2:
+                if (ny - self.y) >= 3*(self.vy * (self.vy + 1)) / 2:
                     if self.vy < self._maxv:
                         self.vy += 1
                 else:
@@ -98,6 +99,8 @@ class MisilDA:
             self.vcooldown = 2
         else:
             self.vcooldown -= 1
+
+
 
 
 class Sams:
