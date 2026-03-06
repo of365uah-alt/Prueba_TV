@@ -12,6 +12,7 @@ class Avion:
         self.dir = dirr
         self.v = v
         self.lockeado = False
+        self.destruido = False
 
     def draw(self):
         if self.dir == 0:
@@ -56,6 +57,9 @@ class MisilDA:
         self.predictX = 0
         self.predictY = 0
 
+        self.impacto = False
+        self.destruido = False
+
     def draw(self):
 
         if self.tvx == 0:
@@ -76,11 +80,15 @@ class MisilDA:
         self.tiempoY = abs((self.y - self.target.y)/(self.velocidadDiffY + 0.5))
         self.predictX = self.target.x + (self.velocidadDiffY * self.tiempoY)
         self.move(self.predictX,self.target.y)
+        if abs(self.target.y - self.y) < 10 and abs(self.target.x - self.x) < 10:
+            self.impacto = True
+            self.target.destruido = True
+            self.destruido = True
 
 
     def move(self,nx,ny):
+        arcade.draw_point(nx,ny,color=arcade.color.RED,size=10)
         if self.vcooldown == 0:
-            print(self.target.x,self.velocidadDiffX *self.tiempoX,self.velocidadDiffY * self.tiempoY)
             if nx > self.x:
                 if self.vx < self._maxv:
                     self.vx += 1
@@ -99,6 +107,8 @@ class MisilDA:
             self.vcooldown = 2
         else:
             self.vcooldown -= 1
+
+        return self.impacto
 
 
 
@@ -166,12 +176,19 @@ class MiJuego(arcade.Window):
                         j.lockeado = True
         for i in self.misilesDA:
             i.draw()
+            if i.destruido or i.impacto:
+                self.misilesDA.remove(i)
+
 
         for i in self.aviones:
+            if i.destruido:
+                self.aviones.remove(i)
             i.draw()
             if i.x < 0:
+                i.destruido = True
                 self.aviones.remove(i)
             elif i.x > 800:
+                i.destruido = True
                 self.aviones.remove(i)
 
         #tierra
