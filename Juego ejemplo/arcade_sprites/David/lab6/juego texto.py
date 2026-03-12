@@ -1,6 +1,9 @@
 #Juego por David gutiérrez
 import json
 import pathlib
+import random
+
+import enemigos
 jugadorPath = pathlib.Path("jugador.json")
 tiendaPath = pathlib.Path("tienda.json")
 enemigosPath = pathlib.Path("enemigos.json")
@@ -71,6 +74,21 @@ def comprar(comando):
                 print("Te falta dinero")
     print("Objeto no encontrado")
     main()
+def lucha():
+    Estats = json.load(open(enemigosPath, "r"))
+    Jstats = json.load(open(jugadorPath, "r"))
+
+    eestat = Estats[random.randint(0,len(Estats)-1)]
+    print(eestat)
+
+    #Constructor
+    enemigo = enemigos.Enemigos()
+    enemigo.set_vida(eestat["vida"])
+    enemigo.set_exp(eestat["experiencia"])
+    enemigo.set_dinero(eestat["dinero"])
+    enemigo.set_danno(eestat["danno"])
+
+
 
 def main():
     comando = input().lower()
@@ -82,6 +100,9 @@ def main():
         tienda()
     elif comando.startswith("comprar"):
         comprar(comando)
+    elif comando == "lucha":
+        lucha()
+
 
 
 
