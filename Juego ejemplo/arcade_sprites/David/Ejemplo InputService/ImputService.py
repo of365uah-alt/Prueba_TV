@@ -25,13 +25,13 @@ class Personaje:
         arcade.draw_circle_filled(self.x,self.y - 600,12,arcade.color.BLACK,0)
 
     def logic(self, dt) -> None:
-        if self.x > 900:
+        if self.x > 800:
             self.x -= 800
-        if self.x < -100:
+        if self.x < 0:
             self.x += 800
-        if self.y > 700:
+        if self.y > 600:
             self.y -= 600
-        if self.y < -100:
+        if self.y < 0:
             self.y += 600
         if self.bTime <= 0:
             self.vel = 5
@@ -74,7 +74,8 @@ class Eye_chutulu:
         elif self.diffX < 0 and self.diffY < 0:
              self.tilt = 180 - (180 + abs(math.degrees(math.atan(abs(self.diffY) / self.diffX))))
         elif self.diffX > 0 and self.diffY < 0:
-             self.tilt = 180 - (180 + abs(math.degrees(math.atan(abs(self.diffY) / abs(self.diffX)))))
+             self.tilt = 180 - (270 + abs(math.degrees(math.atan(abs(self.diffY) / abs(self.diffX)))-90))
+             print(90 + abs(90 - math.degrees(math.atan(abs(self.diffY) / abs(self.diffX)))))
 
 
     def draw(self) -> None:
