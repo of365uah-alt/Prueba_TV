@@ -82,7 +82,7 @@ class MisilDA:
         self.move(self.predictX,self.target.y)
         if abs(self.target.y - self.y) < 10 and abs(self.target.x - self.x) < 10:
             self.impacto = True
-            self.target.destruido = True
+            self.target.destruidio = True
             self.destruido = True
 
 
