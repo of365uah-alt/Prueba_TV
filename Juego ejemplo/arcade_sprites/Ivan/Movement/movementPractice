@@ -1,0 +1,153 @@
+
+import arcade
+import random
+
+ANCHO = 800
+ALTO = 800
+
+class Juego(arcade.Window):
+    def __init__(self):
+        super().__init__(ANCHO, ALTO, "Juego")
+        arcade.set_background_color((20, 0, 30))
+        self.jugador = Personaje(40, 40)    
+        self.enemigo = Enemigo(400, 400)
+        self.lista_bolitas = [bolita(1,1, 0) for _ in range(10)]
+        self.numeroBolitas = 0
+        self.wPressed = False
+        self.sPressed = False 
+        self.aPressed = False
+        self.dPressed = False
+        self.score = 0
+   
+        
+
+
+    def on_draw(self):
+        self.clear()
+        arcade.draw_circle_filled(self.jugador.x, self.jugador.y, self.jugador.radio, (255, 0, 0))
+        arcade.draw_circle_filled(self.enemigo.enemigoX, self.enemigo.enemigoY, self.enemigo.radio, (0, 255, 0))
+        for b in self.lista_bolitas:
+            arcade.draw_circle_filled(b.bolitaX, b.bolitaY, 20, (0, 0, 255))
+        arcade.draw_text(f"Score: {self.score}", 10, ALTO - 30, (255, 255, 255), 20)
+            
+            
+
+
+
+    def on_update(self, delta_time):
+        if self.wPressed:
+            self.jugador.y += self.jugador.velocidad
+        if self.sPressed:
+            self.jugador.y -= self.jugador.velocidad
+        if self.aPressed:
+            self.jugador.x -= self.jugador.velocidad
+        if self.dPressed:
+            self.jugador.x += self.jugador.velocidad
+
+        if self.jugador.radio <= self.enemigo.radio:
+            if self.enemigo.enemigoX < self.jugador.x:
+                self.enemigo.enemigoX += self.enemigo.enemigoVelocidad
+            if self.enemigo.enemigoX > self.jugador.x:
+                self.enemigo.enemigoX -= self.enemigo.enemigoVelocidad
+            if self.enemigo.enemigoY < self.jugador.y:
+                self.enemigo.enemigoY += self.enemigo.enemigoVelocidad
+            if self.enemigo.enemigoY > self.jugador.y:
+                self.enemigo.enemigoY -= self.enemigo.enemigoVelocidad
+        else: 
+            if self.enemigo.enemigoX < self.jugador.x:
+                self.enemigo.enemigoX -= self.enemigo.enemigoVelocidad
+            if self.enemigo.enemigoX > self.jugador.x:
+                self.enemigo.enemigoX += self.enemigo.enemigoVelocidad
+            if self.enemigo.enemigoY < self.jugador.y:
+                self.enemigo.enemigoY -= self.enemigo.enemigoVelocidad
+            if self.enemigo.enemigoY > self.jugador.y:
+                self.enemigo.enemigoY += self.enemigo.enemigoVelocidad   
+
+        if self.enemigo.enemigoX >= ANCHO:
+            self.enemigo.enemigoX = 5
+        if self.enemigo.enemigoX <= 0:
+            self.enemigo.enemigoX = ANCHO-5
+        if self.enemigo.enemigoY >= ALTO:
+            self.enemigo.enemigoY = 5
+        if self.enemigo.enemigoY <= 0:
+            self.enemigo.enemigoY = ALTO-5
+
+        if self.jugador.x >= ANCHO:
+            self.jugador.x = 5
+        if self.jugador.x <= 0:
+            self.jugador.x = ANCHO-5
+        if self.jugador.y >= ALTO:
+            self.jugador.y = 5
+        if self.jugador.y <= 0:
+            self.jugador.y = ALTO-5
+              
+        
+
+        for b in self.lista_bolitas[:]:
+            if abs(self.jugador.x - b.bolitaX) < self.jugador.radio and abs(self.jugador.y - b.bolitaY) < self.jugador.radio:
+                self.lista_bolitas.remove(b)
+                self.jugador.radio += 2
+                self.numeroBolitas -= 1
+                self.score += 1
+
+        if len(self.lista_bolitas) == 0:
+            self.lista_bolitas = [bolita(1, 1, 0) for _ in range(10)]
+            self.numeroBolitas = 10
+
+        
+
+        pass
+
+    def on_key_press(self, symbol, modifiers):
+        if symbol == arcade.key.W:
+            self.wPressed = True
+        elif symbol == arcade.key.S:   
+            self.sPressed = True
+        elif symbol == arcade.key.A:
+            self.aPressed = True
+        elif symbol == arcade.key.D:
+            self.dPressed = True
+
+        return super().on_key_press(symbol, modifiers)
+    
+    
+    def on_key_release(self, symbol, modifiers):
+        if symbol == arcade.key.W:
+            self.wPressed = False
+        elif symbol == arcade.key.S:   
+            self.sPressed = False
+        elif symbol == arcade.key.A:
+            self.aPressed = False
+        elif symbol == arcade.key.D:
+            self.dPressed = False
+        return super().on_key_release(symbol, modifiers)
+    
+    def posicionamiento(self):
+        self.x = self.x 
+        self.y = self.y
+
+
+class Personaje:
+    def __init__(self, x, y, radio=20):
+        self.x = x
+        self.y = y
+        self.velocidad = 6
+        self.radio = radio
+class Enemigo:
+    def __init__(self, x, y, radio=40):
+        self.enemigoX = x
+        self.enemigoY = y
+        self.enemigoVelocidad = 4
+        self.radio = radio
+
+class bolita:
+    def __init__(self, x, y, numero):
+        self.bolitaX = random.randint(0, ANCHO)
+        self.bolitaY = random.randint(0, ALTO)
+        self.numero = numero
+
+
+if __name__ == "__main__":
+    enemigo = Enemigo(400, 400)
+    ventana = Juego()
+    arcade.run()
