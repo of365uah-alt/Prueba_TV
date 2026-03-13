@@ -264,7 +264,6 @@ class Ball:
         self.x += normal.x * penetration
         self.y += normal.y * penetration + player.y_dir * Player.SPEED * delta_time
 
-
     def bounce(self, normal: Vector2):
 
         dot = Vector2.dot(self.facing_dir, normal)
