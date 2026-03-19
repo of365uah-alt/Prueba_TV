@@ -3,8 +3,8 @@ import arcade
 import random as rd
 from pathlib import Path
 cdir = Path(__file__).parent
-SCREEN_WIDTH = 600
-SCREEN_HEIGHT = 600
+SCREEN_WIDTH = 1920
+SCREEN_HEIGHT = 1080
 SCREEN_TITLE = "Cheese Collector"
 class player:
     def __init__(self,x,y,dx,dy,dirx,diry,player_list , player_sprite):
@@ -19,13 +19,13 @@ class player:
     def update(self):
         self.x += self.dx
         self.y += self.dy
+        self.player_sprite.center_x = self.x
+        self.player_sprite.center_y = self.y
 
     def dibujar(self):
         self.player_sprite.draw()
     def setup(self):
-        self.player_sprite = arcade.Sprite(Path(cdir / "jane.png"), 0.02)
-        self.player_sprite.center_x = self.x
-        self.player_sprite.center_y = self.y
+        self.player_sprite = arcade.Sprite(Path(cdir / "jane.png"), 0.1)
         self.player_list.append(self.player_sprite)
 
 class MiJuego(arcade.Window):
@@ -58,12 +58,12 @@ class MiJuego(arcade.Window):
     def setup(self):
         self.player.setup()
 
+        self.coin_list = arcade.SpriteList()
 
-
-        self.score_tx = arcade.Text("", 10, 590, arcade.color.WHITE, 14)
+        self.score_tx = arcade.Text("", 10, SCREEN_HEIGHT - 20, arcade.color.WHITE, 14)
 
         for i in range(50):
-            coin = arcade.Sprite(Path(cdir / "cheese.png"), 0.02)
+            coin = arcade.Sprite(Path(cdir / "cheese.png"), 0.05)
             coin.center_x = rd.randrange(SCREEN_WIDTH)
             coin.center_y = rd.randrange(SCREEN_HEIGHT)
             self.coin_list.append(coin)
@@ -85,7 +85,7 @@ class MiJuego(arcade.Window):
  
     def on_draw(self):
         self.clear()
-        self.player_list.draw()
+        self.player.player_list.draw()
         self.coin_list.draw()
         self.score_tx.draw()
         
@@ -99,6 +99,11 @@ class MiJuego(arcade.Window):
         self.player.update()
         self.score_tx.text = f"Score: {self.score}"
         limites(self.player,SCREEN_HEIGHT,SCREEN_WIDTH)
+        self.coin_list.update()
+        self.coin_hit_list = arcade.check_for_collision_with_list(self.player.player_sprite, self.coin_list)
+        for coin in self.coin_hit_list:
+            coin.remove_from_sprite_lists()
+            self.score += 1
 
 def limites(player,alto,ancho):
     if player.x < 0:
