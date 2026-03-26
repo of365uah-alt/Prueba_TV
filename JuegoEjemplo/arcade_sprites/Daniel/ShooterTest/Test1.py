@@ -1,4 +1,7 @@
 import math, arcade
+
+from pyglet.event import EVENT_HANDLE_STATE
+
 from JuegoEjemplo.arcade_sprites.Daniel.ShooterTest.geometry import Vector2, Direction
 
 
@@ -28,12 +31,17 @@ class Test1(arcade.Window):
         self.reticle = Reticle(0, 0)
 
         self.inputs = set()
+        self.mouse_inputs = set()
+
         self.mouse_pos = Vector2.zero()
 
         self.bullets: set[Bullet] = set()
 
         self.reticle.show()
         self.set_mouse_visible(False)
+
+        self.attack_counter = 0
+        self.attack_cooldown = 0.35
 
     def on_draw(self):
 
@@ -70,6 +78,13 @@ class Test1(arcade.Window):
 
         self.update_fps_display(delta_time)
 
+        if self.attack_counter > 0:
+            self.attack_counter -= delta_time
+        else:
+            if arcade.MOUSE_BUTTON_LEFT in self.mouse_inputs:
+                self.check_mouse_inputs()
+                self.attack_counter = self.attack_cooldown
+
     def on_key_press(self, symbol: int, modifiers: int):
         self.inputs.add(symbol)
 
@@ -85,8 +100,12 @@ class Test1(arcade.Window):
         self.reticle.update_pos(x, y)
 
     def on_mouse_press(self, x: int, y: int, button: int, modifiers: int):
-        if button is arcade.MOUSE_BUTTON_LEFT:
-            self.fire_bullet()
+        if button not in self.mouse_inputs:
+            self.mouse_inputs.add(button)
+
+    def on_mouse_release(self, x: int, y: int, button: int, modifiers: int):
+        if button in self.mouse_inputs:
+            self.mouse_inputs.remove(button)
 
     def fire_bullet(self):
 
@@ -136,6 +155,12 @@ class Test1(arcade.Window):
             x -= 1
 
         self.player.set_moving(Vector2(x, y))
+
+    def check_mouse_inputs(self):
+
+        if arcade.MOUSE_BUTTON_LEFT in self.mouse_inputs:
+            self.fire_bullet()
+
 
 
 class Player:
